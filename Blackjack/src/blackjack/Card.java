@@ -8,11 +8,13 @@ package blackjack;
  *
  */
 public class Card {
-  private final int LOW_ACE = 1; // Ace value of 1  
-  private final int HIGH_ACE = 11; // Ace value of 11
+  public static final int LOW_ACE = 1; // Ace value of 1  
+  public static final int HIGH_ACE = 11; // Ace value of 11
   private int value; // Value of card
+  private boolean isAce;
 
   public Card(String cardName) {
+	  this.isAce = false;
     parseCardName(cardName);
   }
 
@@ -24,7 +26,8 @@ public class Card {
         this.value = 10;
         break;
       case "A":
-        this.value = 11; // Default, will be switched in game logic if need be.
+        this.value = 1; // Default, will be switched in game logic if need be.
+        isAce = true;
         break;
       default:
         this.value = Integer.valueOf(cardName);
@@ -53,6 +56,13 @@ public class Card {
   public void setValue(int value) {
     this.value = value;
   }
+
+/**
+ * @return the isAce
+ */
+public boolean isAce() {
+	return isAce;
+}
 
 
 
