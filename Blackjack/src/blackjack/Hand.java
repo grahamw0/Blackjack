@@ -59,4 +59,48 @@ public class Hand {
     }
   }
 
+  /**
+   * @return the cards
+   */
+  public ArrayList<Card> getCards() {
+    return cards;
+  }
+
+  /**
+   * @param cards the cards to set
+   */
+  public void setCards(ArrayList<Card> cards) {
+    this.cards = cards;
+  }
+
+  /**
+   * @return the total
+   */
+  public int getTotal() {
+    return total;
+  }
+
+  /**
+   * @param total the total to set
+   */
+  public void setTotal(int total) {
+    this.total = total;
+  }
+
+  /**
+   * @return the bust
+   */
+  public boolean isBust() {
+    return bust;
+  }
+
+  /**
+   * @param bust the bust to set
+   */
+  public void setBust(boolean bust) {
+    this.bust = bust;
+  }
+
+
+
 }
