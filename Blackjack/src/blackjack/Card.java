@@ -8,19 +8,19 @@ package blackjack;
  *
  */
 public class Card {
-  public static final int LOW_ACE = 1; // Ace value of 1  
+  public static final int LOW_ACE = 1; // Ace value of 1
   public static final int HIGH_ACE = 11; // Ace value of 11
   private int value; // Value of card
   private boolean isAce;
 
   public Card(String cardName) {
-	  this.isAce = false;
+    this.isAce = false;
     parseCardName(cardName);
   }
 
   private void parseCardName(String cardName) {
     switch (cardName.substring(0)) {
-      case "J": 
+      case "J":
       case "Q":
       case "K":
         this.value = 10;
@@ -57,12 +57,12 @@ public class Card {
     this.value = value;
   }
 
-/**
- * @return the isAce
- */
-public boolean isAce() {
-	return isAce;
-}
+  /**
+   * @return the isAce
+   */
+  public boolean isAce() {
+    return isAce;
+  }
 
 
 

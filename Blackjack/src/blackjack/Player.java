@@ -13,7 +13,7 @@ public class Player {
   private int pushes;
   private int losses;
   private Hand hand;
-  
+
   public Player() {
     // TODO Auto-generated constructor stub
     this.money = 0;
@@ -22,7 +22,7 @@ public class Player {
     this.losses = 0;
     this.hand = new Hand();
   }
-  
+
   public Player(int dealersStartingAmount) {
     this.money = dealersStartingAmount;
     this.wins = 0;
@@ -30,14 +30,8 @@ public class Player {
     this.losses = 0;
     this.hand = new Hand();
   }
-  
-  
-  
-  
-  
-  
-  
-  
+
+
 
   /**
    * @return the money
@@ -108,15 +102,7 @@ public class Player {
   public void setHand(Hand hand) {
     this.hand = hand;
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
 
 }
