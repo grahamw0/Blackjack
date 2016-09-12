@@ -12,6 +12,7 @@ public class Player {
   private int wins;
   private int pushes;
   private int losses;
+  private int currentBet;
   private Hand hand;
 
   public Player() {
@@ -20,6 +21,7 @@ public class Player {
     this.wins = 0;
     this.pushes = 0;
     this.losses = 0;
+    this.currentBet = 0;
     this.hand = new Hand();
   }
 
@@ -29,6 +31,20 @@ public class Player {
     this.pushes = 0;
     this.losses = 0;
     this.hand = new Hand();
+  }
+
+  public void win() {
+    money += currentBet * 2;
+    wins++;
+  }
+
+  public void push() {
+    pushes++;
+  }
+
+  public void lose() {
+    money -= currentBet;
+    losses++;
   }
 
 
@@ -87,6 +103,20 @@ public class Player {
    */
   public void setLosses(int losses) {
     this.losses = losses;
+  }
+
+  /**
+   * @return the currentBet
+   */
+  public int getCurrentBet() {
+    return currentBet;
+  }
+
+  /**
+   * @param currentBet the currentBet to set
+   */
+  public void setCurrentBet(int currentBet) {
+    this.currentBet = currentBet;
   }
 
   /**
