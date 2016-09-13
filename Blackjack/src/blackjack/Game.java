@@ -37,10 +37,10 @@ public class Game {
 
     String firstLine = br.readLine().substring(1); // Doesn't pick up the $ for easy String -> int
     String[] firstArray = firstLine.trim().split("\\s+");
-    
+
     // TODO: custom exceptions for these errors
     // TODO: Allow for both incorrect dealer value AND player numbers
-    if (Integer.valueOf(firstArray[0]) < 1000) { 
+    if (Integer.valueOf(firstArray[0]) < 1000) {
       System.out.println("ERROR: The dealer has started with not enough money.");
       return;
     } else if (Integer.valueOf(firstArray[0]) > 100000) {
@@ -53,10 +53,16 @@ public class Game {
       System.out.println("ERROR: Too many players.");
       return;
     }
-    
+
+    Player dealer = new Player(Integer.valueOf(firstArray[0]));
+    numberOfPlayers = Integer.valueOf(firstArray[0]);
+
+    for (int i = 0; i < numberOfPlayers; i++) {
+      players.add(new Player());
+    }
+    players.add(dealer); // Ensures the dealer is always the last "player" in the list
     
 
-    
 
   }
 
