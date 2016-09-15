@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * 
  *
- * @author Will
+ * @author Ryan Godfrey, Will Graham
  */
 public class Game {
   private int numberOfPlayers;

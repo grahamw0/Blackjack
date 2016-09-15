@@ -6,7 +6,7 @@ package blackjack;
 /**
  * One More edit
  * 
- * @author grahamw0
+ * @author Ryan Godfrey, Will Graham
  *
  */
 public class Driver {

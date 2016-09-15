@@ -4,7 +4,7 @@
 package blackjack;
 
 /**
- * @author grahamw0
+ * @author Ryan Godfrey, Will Graham
  *
  */
 public class Player {

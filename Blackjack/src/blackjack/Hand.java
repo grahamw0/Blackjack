@@ -6,7 +6,7 @@ package blackjack;
 import java.util.ArrayList;
 
 /**
- * @author grahamw0
+ * @author Ryan Godfrey, Will Graham
  *
  */
 public class Hand {
