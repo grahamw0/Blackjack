@@ -39,18 +39,24 @@ public class Game {
     String[] firstArray = firstLine.trim().split("\\s+");
 
     // TODO: custom exceptions for these errors
-    // TODO: Allow for both incorrect dealer value AND player numbers
+    boolean firstLineError = false;
     if (Integer.valueOf(firstArray[0]) < 1000) {
       System.out.println("ERROR: The dealer has started with not enough money.");
-      return;
-    } else if (Integer.valueOf(firstArray[0]) > 100000) {
+      firstLineError = true;
+    }
+    if (Integer.valueOf(firstArray[0]) > 100000) {
       System.out.println("ERROR: The dealer has started with too much money.");
-      return;
-    } else if (Integer.valueOf(firstArray[1]) < 1) {
+      firstLineError = true;
+    }
+    if (Integer.valueOf(firstArray[1]) < 1) {
       System.out.println("ERROR: Too few players.");
-      return;
-    } else if (Integer.valueOf(firstArray[1]) > 6) {
+      firstLineError = true;
+    }
+    if (Integer.valueOf(firstArray[1]) > 6) {
       System.out.println("ERROR: Too many players.");
+      firstLineError = true;
+    }
+    if (firstLineError) {
       return;
     }
 
@@ -61,7 +67,7 @@ public class Game {
       players.add(new Player());
     }
     players.add(dealer); // Ensures the dealer is always the last "player" in the list
-    
+
 
 
   }
