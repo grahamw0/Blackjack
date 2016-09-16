@@ -43,7 +43,7 @@ public class Game {
     String firstLine = br.readLine().substring(1); // Doesn't pick up the $ for easy String -> int
     String[] firstArray = firstLine.trim().split("\\s+");
 
-    
+
     firstLineErrorCheck(firstArray);
 
     numberOfPlayers = Integer.valueOf(firstArray[1]); // # of players includes dealer
@@ -54,7 +54,7 @@ public class Game {
 
     // Ensures the dealer is always the last "player" in the list
     players.add(new Player(Integer.valueOf(firstArray[0])));
-    numberOfPlayers++;  // Accounts for dealer
+    numberOfPlayers++; // Accounts for dealer
 
 
     String gameLine = null;
@@ -67,12 +67,14 @@ public class Game {
         System.out.println("Error: Too few players");
       } else {
         System.out.println("everything's cool, in terms of player numbers in this line");
+        parseHands(gameLineArray);
+        
       }
 
     }
 
 
-
+    exit();
   }
 
   private void exit() throws IOException {
@@ -117,6 +119,10 @@ public class Game {
       System.out.println("everything's cool");
       outputArray.add("everything's cool");
     }
+  }
+  
+  private void parseHands(String[] array) {
+    
   }
 
 
