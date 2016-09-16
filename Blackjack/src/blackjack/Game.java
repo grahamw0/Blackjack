@@ -3,10 +3,13 @@
  */
 package blackjack;
 
+import dataFiles.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -18,7 +21,9 @@ import java.util.ArrayList;
  */
 public class Game {
   private int numberOfPlayers;
-  private ArrayList<Player> players;
+  private ArrayList<Player> players; // Includes dealer as last player
+  private ArrayList<String> outputArray;
+  private File file = new File("src/dataFiles/test.txt");  // TODO: allow for file choices
 
   /**
    * @throws IOException
@@ -26,12 +31,12 @@ public class Game {
    */
   public Game() throws IOException {
     players = new ArrayList<>();
+    outputArray = new ArrayList<>();
     play();
   }
 
   public void play() throws IOException {
     // Get 1st line- can't be in a loop, as its unique
-    File file = new File("test.txt"); // TODO: allow for file choices
     FileInputStream fis = new FileInputStream(file);
     BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 
@@ -42,34 +47,71 @@ public class Game {
     boolean firstLineError = false;
     if (Integer.valueOf(firstArray[0]) < 1000) {
       System.out.println("ERROR: The dealer has started with not enough money.");
+      outputArray.add("ERROR: The dealer has started with not enough money.");
       firstLineError = true;
     }
     if (Integer.valueOf(firstArray[0]) > 100000) {
       System.out.println("ERROR: The dealer has started with too much money.");
+      outputArray.add("ERROR: The dealer has started with too much money.");
       firstLineError = true;
     }
     if (Integer.valueOf(firstArray[1]) < 1) {
       System.out.println("ERROR: Too few players.");
+      outputArray.add("ERROR: Too few players.");
       firstLineError = true;
     }
     if (Integer.valueOf(firstArray[1]) > 6) {
       System.out.println("ERROR: Too many players.");
+      outputArray.add("ERROR: Too many players.");
       firstLineError = true;
     }
     if (firstLineError) {
-      return;
+      br.close();
+      writeOutput();
+    } else {
+      System.out.println("everything's cool");
+      outputArray.add("everything's cool");
     }
 
-    Player dealer = new Player(Integer.valueOf(firstArray[0]));
-    numberOfPlayers = Integer.valueOf(firstArray[0]);
+    numberOfPlayers = Integer.valueOf(firstArray[1]) + 1; // # of players includes dealer
 
     for (int i = 0; i < numberOfPlayers; i++) {
       players.add(new Player());
     }
-    players.add(dealer); // Ensures the dealer is always the last "player" in the list
+
+    // Ensures the dealer is always the last "player" in the list
+    players.add(new Player(Integer.valueOf(firstArray[0])));
+
+
+    String gameLine = null;
+    while ((gameLine = br.readLine()) != null) {
+      String[] gameLineArray = gameLine.substring(1).split("\\[");
+
+      if (gameLineArray.length > numberOfPlayers) {
+        System.out.println("Error: Too many players");
+      } else if (gameLineArray.length < numberOfPlayers) {
+        System.out.println("Error: Too few players");
+      } else {
+        System.out.println("everything's cool, in terms of player numbers in this line");
+      }
+
+    }
 
 
 
+  }
+
+  private void writeOutput() throws IOException {
+    BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+    writer.append("\n");
+    writer.append("\n");
+    writer.append("OUTPUT:\n");
+    for(String line : outputArray) {
+      writer.append(line);
+    }
+    
+    writer.close();
+    System.exit(0);
   }
 
 

@@ -19,7 +19,7 @@ public class Card {
   }
 
   private void parseCardName(String cardName) {
-    switch (cardName.substring(0)) {
+    switch (cardName.substring(0, cardName.length()-1)) {
       case "J":
       case "Q":
       case "K":
