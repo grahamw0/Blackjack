@@ -8,12 +8,12 @@ package blackjack;
  *
  */
 public class Player {
-  private int money;
-  private int wins;
-  private int pushes;
-  private int losses;
-  private int currentBet;
-  private Hand hand;
+  protected int money;
+  protected int wins;
+  protected int pushes;
+  protected int losses;
+  protected int currentBet;
+  protected Hand hand;
 
   public Player() {
     // TODO Auto-generated constructor stub
