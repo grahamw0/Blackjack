@@ -6,7 +6,7 @@ package blackjack;
 /**
  * 
  *
- * @author Will
+ * @author Will Graham, Ryan Godfrey
  */
 public class Dealer extends Player {
   
