@@ -15,9 +15,9 @@ public class Hand {
   private int total;
   private boolean bust;
 
-  public Hand(ArrayList<Card> cards) {
+  public Hand() {
     bust = false;
-    this.cards = cards;
+    this.cards = new ArrayList();
     calculateTotal();
     this.bust = isBust(this.total);
   }
