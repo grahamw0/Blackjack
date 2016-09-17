@@ -2,6 +2,8 @@
  * 
  */
 package blackjack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This is Class Card.  It will initialize all fields that are 
@@ -94,6 +96,12 @@ public class Card {
     return isAce; // return boolean value.  
   }
 
+  public static boolean validCardValue(String value) {
+    String regex = "([2-9]|10|[JQKA])[DHSC]";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(value);
+    return matcher.matches();
+  }
 
 
 }
