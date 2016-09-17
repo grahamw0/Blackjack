@@ -29,5 +29,9 @@ public class Dealer extends Player {
     losses++;
     money -= (amount * 2);
   }
+
+  public void push() {
+    pushes++;
+  }
   
 }
