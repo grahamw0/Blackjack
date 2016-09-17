@@ -122,7 +122,7 @@ public class Game {
   }
 
   private void parseHands(String[] array) {
-
+    // TODO: Do it
   }
 
   /**
@@ -133,11 +133,30 @@ public class Game {
    * @param dealer
    * @return
    */
-  private void winLosePush(Player player, Dealer dealer) { // TODO check for busting, then apply
-                                                           // appropriate wins, etc
+  private void winLosePush(Player player, Dealer dealer) { 
     int playerTotal = player.getHand().getTotal();
     int dealerTotal = dealer.getHand().getTotal();
 
+    if (player.isBust()) {
+      player.lose();
+      dealer.win(player.getCurrentBet());
+    }
+    else if (dealer.isBust()) {
+      player.win();
+      dealer.lose(player.getCurrentBet());
+    }
+    else if (playerTotal > dealerTotal) {
+      player.win();
+      dealer.lose(player.getCurrentBet());
+    }
+    else if (playerTotal < dealerTotal) {
+      player.lose();
+      dealer.win(player.getCurrentBet());
+    }
+    else {
+      player.push();
+      dealer.push();
+    }
 
   }
 
