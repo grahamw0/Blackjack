@@ -67,7 +67,13 @@ public class Game {
         System.out.println("Error: Too few players");
       } else {
         System.out.println("everything's cool, in terms of player numbers in this line");
-        parseHands(gameLineArray);
+        boolean validHand = parseHands(gameLineArray);
+        if (!validHand) {
+          System.out.println("ERROR: Malformed hand.");
+          outputArray.add("ERROR: Malformed hand.");
+        } else {
+          // Continue doin your thing
+        }
 
       }
 
@@ -121,8 +127,24 @@ public class Game {
     }
   }
 
-  private void parseHands(String[] array) {
+  private boolean parseHands(String[] gameLineArray) {
     // TODO: Do it
+    boolean validLine = true;
+    for(int i = 0; i < (gameLineArray.length - 1), i++) {
+      String[] handBetArray = gameLineArray[i].split("] ");
+      players.get(i).setCurrentBet(Integer.valueof(handBetArray[1].substring(1)));
+      String[] cardStrings = handBetArray[0].split(", ");
+      Card[] cardArray = new Card[cardStrings.length];
+      for (int j = 0; j < cardArray.length; j++) {
+        if (!Card.validCardValue(cardStrings[j])) {
+          return false;
+        }
+        else {
+          cardArray[j] = new Card(cardStrings[j]);
+        }
+      }
+      players.get(i).setHand(cardArray);
+    }
   }
 
   /**
