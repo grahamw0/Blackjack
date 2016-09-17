@@ -53,7 +53,7 @@ public class Game {
     }
 
     // Ensures the dealer is always the last "player" in the list
-    players.add(new Player(Integer.valueOf(firstArray[0])));
+    players.add(new Dealer(Integer.valueOf(firstArray[0])));
     numberOfPlayers++; // Accounts for dealer
 
 
@@ -68,7 +68,7 @@ public class Game {
       } else {
         System.out.println("everything's cool, in terms of player numbers in this line");
         parseHands(gameLineArray);
-        
+
       }
 
     }
@@ -120,31 +120,25 @@ public class Game {
       outputArray.add("everything's cool");
     }
   }
-  
+
   private void parseHands(String[] array) {
-    
+
   }
-  
+
   /**
-   * Compares a player's hand to the dealer's, updates each's money, then updates the appropriate 
+   * Compares a player's hand to the dealer's, updates each's money, then updates the appropriate
    * counter for each (win/lose/push).
+   * 
    * @param player
    * @param dealer
    * @return
    */
-  private void winLosePush(Player player, Player dealer) {
+  private void winLosePush(Player player, Dealer dealer) { // TODO check for busting, then apply
+                                                           // appropriate wins, etc
     int playerTotal = player.getHand().getTotal();
     int dealerTotal = dealer.getHand().getTotal();
-    
-    if(playerTotal > dealerTotal) {
-      player.win();
-    }
-    else if(playerTotal < dealerTotal) {
-      player.lose();
-    }
-    else {
-      player.push();
-    }
+
+
   }
 
 
