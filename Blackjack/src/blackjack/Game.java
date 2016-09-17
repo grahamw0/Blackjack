@@ -124,6 +124,28 @@ public class Game {
   private void parseHands(String[] array) {
     
   }
+  
+  /**
+   * Compares a player's hand to the dealer's, updates each's money, then updates the appropriate 
+   * counter for each (win/lose/push).
+   * @param player
+   * @param dealer
+   * @return
+   */
+  private void winLosePush(Player player, Player dealer) {
+    int playerTotal = player.getHand().getTotal();
+    int dealerTotal = dealer.getHand().getTotal();
+    
+    if(playerTotal > dealerTotal) {
+      player.win();
+    }
+    else if(playerTotal < dealerTotal) {
+      player.lose();
+    }
+    else {
+      player.push();
+    }
+  }
 
 
 }
