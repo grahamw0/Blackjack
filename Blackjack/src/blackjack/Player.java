@@ -70,12 +70,6 @@ public class Player {
     return wins;
   }
 
-  /**
-   * @param wins the wins to set
-   */
-  public void setWins(int wins) {
-    this.wins = wins;
-  }
 
   /**
    * @return the pushes
@@ -85,24 +79,10 @@ public class Player {
   }
 
   /**
-   * @param pushes the pushes to set
-   */
-  public void setPushes(int pushes) {
-    this.pushes = pushes;
-  }
-
-  /**
    * @return the losses
    */
   public int getLosses() {
     return losses;
-  }
-
-  /**
-   * @param losses the losses to set
-   */
-  public void setLosses(int losses) {
-    this.losses = losses;
   }
 
   /**
@@ -132,7 +112,5 @@ public class Player {
   public void setHand(Hand hand) {
     this.hand = hand;
   }
-
-
 
 }
