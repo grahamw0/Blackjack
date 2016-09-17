@@ -11,13 +11,13 @@ import java.util.ArrayList;
  *
  */
 public class Hand {
-  private ArrayList<Card> cards;
+  private Card[] cards;
   private int total;
   private boolean bust;
 
   public Hand() {
     bust = false;
-    this.cards = new ArrayList();
+    this.cards = new Card[]; // Might throw error
     calculateTotal();
     this.bust = isBust(this.total);
   }
@@ -60,14 +60,14 @@ public class Hand {
   /**
    * @return the cards
    */
-  public ArrayList<Card> getCards() {
+  public Card[] getCards() {
     return cards;
   }
 
   /**
    * @param cards the cards to set
    */
-  public void setCards(ArrayList<Card> cards) {
+  public void setCards(Card[] cards) {
     this.cards = cards;
   }
 
