@@ -12,7 +12,7 @@ public class Player {
   protected int wins;
   protected int pushes;
   protected int losses;
-  protected int currentBet;
+  private int currentBet;  // Dealer won't ever have his own bet
   protected Hand hand;
 
   public Player() {
@@ -25,8 +25,8 @@ public class Player {
     this.hand = new Hand();
   }
 
-  public Player(int dealersStartingAmount) {
-    this.money = dealersStartingAmount;
+  public Player() {
+    this.money = 0;
     this.wins = 0;
     this.pushes = 0;
     this.losses = 0;
