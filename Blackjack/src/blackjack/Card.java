@@ -31,12 +31,15 @@ public class Card {
     this.isAce = false; // Ace is initialized to false
     //parseCardName(cardName.substring(0, cardName.length()-2)); // Passes only the # component, disregards suit
     
-    if(cardName.length() == 2) {
+    /*if(cardName.length() == 2) {
       parseCardName(cardName.substring(0, cardName.length()-1));
     }
     else {
       parseCardName(cardName.substring(0, cardName.length()-2));
-    }
+    }*/
+    
+    cardName = cardName.substring(0, cardName.length()-1);
+    parseCardName(cardName);
   }
   
   /**

@@ -162,6 +162,7 @@ public class Game {
         dealerCards[i] = new Card(cardStringsDealer[i]);
       }
     }
+    players.get(players.size()-1).setHand(new Hand(dealerCards));
 
     return true;
   }
