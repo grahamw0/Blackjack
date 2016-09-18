@@ -198,6 +198,11 @@ public class Game {
 
   }
 
+  /**
+   * Condenses printing to console for easy access/debugging and adding to array of Strings to be
+   * printed to file.
+   * @param line String to be printed in console and text file output
+   */
   public void output(String line) {
     System.out.println(line);
     outputArray.add(line);
