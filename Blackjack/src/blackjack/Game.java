@@ -58,7 +58,8 @@ public class Game {
 
 
     String gameLine = null;
-    while ((gameLine = br.readLine()) != null) {
+    while ((gameLine = br.readLine()) != null && !(gameLine.equals("----------------"))
+        && !(gameLine.equals(""))) {
       String[] gameLineArray = gameLine.substring(1).split("\\[");
 
       if (gameLineArray.length > numberOfPlayers) {
@@ -99,6 +100,8 @@ public class Game {
   private void exit() throws IOException {
     BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
     writer.append("\n");
+    writer.append("\n");
+    writer.append("----------------");
     writer.append("\n");
     writer.append("OUTPUT:\n");
     for (String line : outputArray) {
