@@ -29,7 +29,14 @@ public class Card {
    */
   public Card(String cardName) {
     this.isAce = false; // Ace is initialized to false
-    parseCardName(cardName); // calls on the parseCardName method
+    //parseCardName(cardName.substring(0, cardName.length()-2)); // Passes only the # component, disregards suit
+    
+    if(cardName.length() == 2) {
+      parseCardName(cardName.substring(0, cardName.length()-1));
+    }
+    else {
+      parseCardName(cardName.substring(0, cardName.length()-2));
+    }
   }
   
   /**
@@ -38,7 +45,7 @@ public class Card {
    * @param cardName
    */
   private void parseCardName(String cardName) {
-    switch (cardName.substring(0, cardName.length()-1)) {
+    switch (cardName) {
       case "J": // if the card is a Jack
       case "Q": // if the card is a Queen
       case "K": // if the card is a King

@@ -17,9 +17,16 @@ public class Hand {
 
   public Hand() {
     bust = false;
-    this.cards = new Card[]; // Might throw error
+    this.cards = null; // Might throw error
+    //calculateTotal();
+    //this.bust = isBust(this.total);
+    bust = false;
+  }
+  
+  public Hand(Card[] cards) {
+    bust = false;
+    this.cards = cards; // Might throw error
     calculateTotal();
-    this.bust = isBust(this.total);
   }
 
   private void calculateTotal() {
@@ -46,7 +53,8 @@ public class Hand {
     } else {
       this.total = hardTotal;
     }
-
+    
+    this.bust = isBust(this.total);
   }
 
   private boolean isBust(int number) {

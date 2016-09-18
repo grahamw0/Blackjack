@@ -62,23 +62,36 @@ public class Game {
       String[] gameLineArray = gameLine.substring(1).split("\\[");
 
       if (gameLineArray.length > numberOfPlayers) {
-        System.out.println("Error: Too many players");
+        output("Error: Too many players");
       } else if (gameLineArray.length < numberOfPlayers) {
-        System.out.println("Error: Too few players");
+        output("Error: Too few players");
       } else {
-        System.out.println("everything's cool, in terms of player numbers in this line");
+        output("everything's cool, in terms of player numbers in this line");
         boolean validHand = parseHands(gameLineArray);
         if (!validHand) {
-          System.out.println("ERROR: Malformed hand.");
-          outputArray.add("ERROR: Malformed hand.");
+          output("ERROR: Malformed hand.");
         } else {
           // Continue doin your thing
+          for (int i = 0; i < (players.size() - 1); i++) {
+            winLosePush(players.get(i), (Dealer) players.get(players.size() - 1));
+          }
         }
 
       }
 
     }
-
+    
+    for(int i = 0; i < players.size() - 1; i++) {
+      output("Player #" + (i + 1) + "'s money: $" + players.get(i).getMoney());
+      output("Player #" + (i + 1) + "'s wins: " + players.get(i).getWins());
+      output("Player #" + (i + 1) + "'s losses: " + players.get(i).getLosses());
+      output("Player #" + (i + 1) + "'s pushes: " + players.get(i).getPushes());
+      output("");
+    }
+    output("Dealer's remaining money: $" + players.get(players.size()-1).getMoney());
+    output("Dealer's wins: " + players.get(players.size()-1).getWins());
+    output("Dealer's losses: " + players.get(players.size()-1).getLosses());
+    output("Dealer's pushes: " + players.get(players.size()-1).getPushes());
 
     exit();
   }
@@ -100,51 +113,57 @@ public class Game {
     // TODO: custom exceptions for these errors
     boolean firstLineError = false;
     if (Integer.valueOf(array[0]) < 1000) {
-      System.out.println("ERROR: The dealer has started with not enough money.");
-      outputArray.add("ERROR: The dealer has started with not enough money.");
+      output("ERROR: The dealer has started with not enough money.");
       firstLineError = true;
     }
     if (Integer.valueOf(array[0]) > 100000) {
-      System.out.println("ERROR: The dealer has started with too much money.");
-      outputArray.add("ERROR: The dealer has started with too much money.");
+      output("ERROR: The dealer has started with too much money.");
       firstLineError = true;
     }
     if (Integer.valueOf(array[1]) < 1) {
-      System.out.println("ERROR: Too few players.");
-      outputArray.add("ERROR: Too few players.");
+      output("ERROR: Too few players.");
       firstLineError = true;
     }
     if (Integer.valueOf(array[1]) > 6) {
-      System.out.println("ERROR: Too many players.");
-      outputArray.add("ERROR: Too many players.");
+      output("ERROR: Too many players.");
       firstLineError = true;
     }
     if (firstLineError) {
       exit();
     } else {
-      System.out.println("everything's cool");
-      outputArray.add("everything's cool");
+      output("everything's cool");
     }
   }
 
   private boolean parseHands(String[] gameLineArray) {
     // TODO: Do it
-    boolean validLine = true;
-    for(int i = 0; i < (gameLineArray.length - 1), i++) {
-      String[] handBetArray = gameLineArray[i].split("] ");
-      players.get(i).setCurrentBet(Integer.valueof(handBetArray[1].substring(1)));
+    for (int i = 0; i < (gameLineArray.length - 1); i++) {
+      String[] handBetArray = gameLineArray[i].trim().split("] ");
+      players.get(i).setCurrentBet(Integer.valueOf(handBetArray[1].substring(1)));
       String[] cardStrings = handBetArray[0].split(", ");
       Card[] cardArray = new Card[cardStrings.length];
       for (int j = 0; j < cardArray.length; j++) {
         if (!Card.validCardValue(cardStrings[j])) {
           return false;
-        }
-        else {
+        } else {
           cardArray[j] = new Card(cardStrings[j]);
         }
       }
-      players.get(i).setHand(cardArray);
+      players.get(i).setHand(new Hand(cardArray));
     }
+
+    String[] cardStringsDealer =
+        gameLineArray[gameLineArray.length - 1].replaceAll("\\]", "").split(", ");
+    Card[] dealerCards = new Card[cardStringsDealer.length];
+    for (int i = 0; i < dealerCards.length; i++) {
+      if (!Card.validCardValue(cardStringsDealer[i])) {
+        return false;
+      } else {
+        dealerCards[i] = new Card(cardStringsDealer[i]);
+      }
+    }
+
+    return true;
   }
 
   /**
@@ -155,31 +174,32 @@ public class Game {
    * @param dealer
    * @return
    */
-  private void winLosePush(Player player, Dealer dealer) { 
+  private void winLosePush(Player player, Dealer dealer) {
     int playerTotal = player.getHand().getTotal();
     int dealerTotal = dealer.getHand().getTotal();
 
-    if (player.isBust()) {
+    if (player.getHand().isBust()) {
       player.lose();
       dealer.win(player.getCurrentBet());
-    }
-    else if (dealer.isBust()) {
+    } else if (dealer.getHand().isBust()) {
       player.win();
       dealer.lose(player.getCurrentBet());
-    }
-    else if (playerTotal > dealerTotal) {
+    } else if (playerTotal > dealerTotal) {
       player.win();
       dealer.lose(player.getCurrentBet());
-    }
-    else if (playerTotal < dealerTotal) {
+    } else if (playerTotal < dealerTotal) {
       player.lose();
       dealer.win(player.getCurrentBet());
-    }
-    else {
+    } else {
       player.push();
       dealer.push();
     }
 
+  }
+
+  public void output(String line) {
+    System.out.println(line);
+    outputArray.add(line);
   }
 
 

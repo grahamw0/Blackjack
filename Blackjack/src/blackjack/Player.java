@@ -25,14 +25,6 @@ public class Player {
     this.hand = new Hand();
   }
 
-  public Player() {
-    this.money = 0;
-    this.wins = 0;
-    this.pushes = 0;
-    this.losses = 0;
-    this.hand = new Hand();
-  }
-
   public void win() {
     money += currentBet * 2;
     wins++;
