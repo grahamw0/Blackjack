@@ -119,7 +119,7 @@ public class Player {
    * @param currentBet the currentBet to set
    */
   public void setCurrentBet(int currentBet) {
-    this.currentBet = currentBet; // Set currentBet to itself.  
+    this.currentBet = currentBet; // Set currentBet to parameter.  
   }
 
   /**
