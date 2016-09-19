@@ -25,8 +25,7 @@ public class Game {
   private ArrayList<Player> players; // The ArralyList of players which includes the dealer as last
                                      // player.
   private ArrayList<String> outputArray; // The ArrayList that will be in charge of the output.
-  private File file = new File("src/dataFiles/test.txt"); // TODO: allow for file choices. The path
-                                                          // to the text file.
+  private File file;
 
   /**
    * This is the constructor for class "Game". It will initialize the ArrayList called players, and
@@ -34,9 +33,10 @@ public class Game {
    * 
    * @throws IOException
    */
-  public Game() throws IOException {
+  public Game(File file) throws IOException {
     players = new ArrayList<>(); // Initializes the ArrayList called players.
     outputArray = new ArrayList<>(); // Initializes the ArrayList called outputArray.
+    this.file = file; // Allows for multiple files
     play(); // calls the "Play" method
   }
 
