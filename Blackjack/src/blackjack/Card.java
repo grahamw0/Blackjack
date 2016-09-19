@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * actual value to the card itself.  
  * 
  * @author Ryan Godfrey, Will Graham
- * @version 1.0
+ * @version 1.0		9/18/2016
  */
 
 public class Card {
@@ -38,8 +38,8 @@ public class Card {
       parseCardName(cardName.substring(0, cardName.length()-2));
     }*/
     
-    cardName = cardName.substring(0, cardName.length()-1);
-    parseCardName(cardName);
+    cardName = cardName.substring(0, cardName.length()-1); // Passes only the # component, disregards suit
+    parseCardName(cardName); // calls on the parseCardName method
   }
   
   /**
@@ -93,7 +93,7 @@ public class Card {
    * @param value the value to set
    */
   public void setValue(int value) {
-    this.value = value;
+    this.value = value; // sets the value
   }
 
   /**
@@ -103,14 +103,21 @@ public class Card {
    * @return the isAce
    */
   public boolean isAce() {
-    return isAce; // return boolean value.  
+    return isAce; // return boolean value of whether it is an Ace or not.  
   }
-
+  
+  /**
+   * This validCardValue method will take in a String value of the 
+   * card and check on if it is a valid card or not.  It will return
+   * true if int is valid and false if it is not valid
+   * @param value
+   * @return boolean value of whether the pattern is a match
+   */
   public static boolean validCardValue(String value) {
-    String regex = "([2-9]|10|[JQKA])[DHSC]";
-    Pattern pattern = Pattern.compile(regex);
-    Matcher matcher = pattern.matcher(value);
-    return matcher.matches();
+    String regex = "([2-9]|10|[JQKA])[DHSC]"; // Regex pattern that checks the validity of a card in a deck.
+    Pattern pattern = Pattern.compile(regex); // Compiles the given regular expression into a pattern.
+    Matcher matcher = pattern.matcher(value); // Creates a matcher that will match the given input against this pattern.
+    return matcher.matches(); // Attempts to match the entire region against the pattern. Returns true or false. 
   }
 
 

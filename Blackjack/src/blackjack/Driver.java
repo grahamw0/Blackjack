@@ -6,10 +6,13 @@ package blackjack;
 import java.io.IOException;
 
 /**
- * One More edit
+ * This is the driver of the blackjack statistics program.  
+ * It holds the main method that initiates the start of the
+ * program.  It also houses a try/catch that will catch any 
+ * IOExeption thrown by the game.  
  * 
  * @author Ryan Godfrey, Will Graham
- *
+ * @version 1.0 	9/18/2016
  */
 public class Driver {
 
