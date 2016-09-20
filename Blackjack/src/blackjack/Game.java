@@ -83,7 +83,8 @@ public class Game {
         output("Error: Too few players"); // Too few players.
         // Reassure that everything is okay if there is no error.
       } else {
-        output("everything's cool, in terms of player numbers in this line"); // Everything is okay.
+        // output("everything's cool, in terms of player numbers in this line"); // Everything is
+        // okay.
         boolean validHand = parseHands(gameLineArray); // Check if the hand is valid or not.
         // If the hand is not valid output an error.
         if (!validHand) {
@@ -182,9 +183,10 @@ public class Game {
     }
     if (firstLineError) { // If the boolean of firstLineError is true then call on the exit method.
       exit();
-    } else { // If there is no error then print everything's cool message for the first line.
-      output("everything's cool");
-    }
+    } /*
+       * else { // If there is no error then print everything's cool message for the first line.
+       * output("everything's cool"); }
+       */
   }
 
   /**
