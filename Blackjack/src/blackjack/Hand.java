@@ -3,8 +3,6 @@
  */
 package blackjack;
 
-import java.util.ArrayList;
-
 /**
  * This is class "Hand".  It will control the logic
  * of what is entailed in a hand of blackjack. 
