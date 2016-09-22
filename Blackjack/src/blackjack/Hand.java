@@ -42,7 +42,7 @@ public class Hand {
     int softTotal = 0; // Assumes any aces will be counted as only 1.
     int hardTotal = 0; // The first ace will be 11, all others must be 1.
     for (Card card : cards) {
-      if (card.isAce() && !hasAnAce) { // If the card is an ane and there isn't already one.
+      if (card.isAce() && !hasAnAce) { // If the card is an ace and there isn't already one.
         hardTotal += Card.HIGH_ACE; // The first ace for hardTotal is always 11.
         softTotal += 1;
         hasAnAce = true;
