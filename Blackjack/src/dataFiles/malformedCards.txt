@@ -3,3 +3,27 @@ $10000 3
 [7C, 5C, 10H] $20 [JH, 3C, 8H] $15 [3H, 6D, JC] $5 [AH, KH]
 [9C, JS] $40 [5C, 7H, 3D, KS] $30 [9C, 10P] $50 [AD, 10C]
 [10H, KS] $50 [2H, 2C, 6S, 5D, 7C] $5 [9D, 9H] $30 [3S, 7H, 7S]
+
+----------------
+OUTPUT:
+ERROR: Malformed hand.
+ERROR: Malformed hand.
+Player #1's money: $80
+Player #1's wins: 1
+Player #1's losses: 1
+Player #1's pushes: 0
+
+Player #2's money: $-5
+Player #2's wins: 0
+Player #2's losses: 1
+Player #2's pushes: 1
+
+Player #3's money: $55
+Player #3's wins: 1
+Player #3's losses: 1
+Player #3's pushes: 0
+
+Dealer's remaining money: $9870
+Dealer's wins: 3
+Dealer's losses: 2
+Dealer's pushes: 1
