@@ -1,6 +1,3 @@
-/**
- * 
- */
 package blackjack;
 
 import java.io.BufferedReader;
@@ -58,8 +55,7 @@ public class Game {
       players.add(new Player()); // Add the next player to the ArrayList called players.
     }
     // Ensures the dealer is always the last "player" in the list
-    players.add(new Dealer(Integer.valueOf(firstArray[0]))); // Create the new Dealer along with the
-                                                             // starting purse value.
+    players.add(new Dealer(Integer.valueOf(firstArray[0])));
     numberOfPlayers++; // Accounts for dealer
 
     String gameLine = null; // Current game line, file is over when multiple "-" is hit
@@ -235,5 +231,4 @@ public class Game {
     System.out.println(line);
     outputArray.add(line); // Add the line to the outputArray.
   }
-
 }
