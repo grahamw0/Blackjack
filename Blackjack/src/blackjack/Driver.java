@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * This is the driver of the blackjack statistics program. It holds the main method that initiates
- * the start of the program.
+ * Driver for program. Allows for test case selection via text menu, then runs the Blackjack program
+ * with the desired file.
  * 
  * @author Ryan Godfrey, Will Graham
  * @version 1.0 9/18/2016
@@ -23,6 +23,7 @@ public class Driver {
 
   /**
    * Allows the user to select from multiple test files.
+   * 
    * @return object pointing to the chosen test file
    */
   private static File fileChoice() {
