@@ -1,124 +1,109 @@
-/**
- * 
- */
 package blackjack;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * This is Class Card.  It will initialize all fields that are 
- * affiliated with the individual card that is found in a deck
- * of playing cards.  It will also be responsible for assigning the 
- * actual value to the card itself.  
+ * This is Class Card. It will initialize all fields that are affiliated with the individual card
+ * that is found in a deck of playing cards. It will also be responsible for assigning the actual
+ * value to the card itself.
  * 
  * @author Ryan Godfrey, Will Graham
- * @version 1.0		9/18/2016
+ * @version 1.0 9/18/2016
  */
 
 public class Card {
-  public static final int LOW_ACE = 1; // Ace value of 1
-  public static final int HIGH_ACE = 11; // Ace value of 11
-  private int value; // Value of card
+  public static final int LOW_ACE = 1;
+  public static final int HIGH_ACE = 11;
+  private int value; // Numerical value of card
   private boolean isAce; // is the card an Ace?
-  
+
   /**
-   * Constructor for class Card. It will initialize the boolean
-   * value of the Ace and assign the value to all of the 
-   * cards in the deck.  
-   * @param cardName
+   * Constructor for class Card. It will initialize the boolean value of the Ace and assign the
+   * value to all of the cards in the deck.
+   * 
+   * @param cardName the card's name, of the form "nS" where n is 2-9,J,Q,K,A; s is H,S,D,C
    */
   public Card(String cardName) {
-    this.isAce = false; // Ace is initialized to false
-    //parseCardName(cardName.substring(0, cardName.length()-2)); // Passes only the # component, disregards suit
-    
-    /*if(cardName.length() == 2) {
-      parseCardName(cardName.substring(0, cardName.length()-1));
-    }
-    else {
-      parseCardName(cardName.substring(0, cardName.length()-2));
-    }*/
-    
-    cardName = cardName.substring(0, cardName.length()-1); // Passes only the # component, disregards suit
-    parseCardName(cardName); // calls on the parseCardName method
+    this.isAce = false;
+    cardName = cardName.substring(0, cardName.length() - 1); // Disregards suit for value calc.
+    parseCardName(cardName);
   }
-  
+
   /**
-   * The parseCardName method sets the 
-   * value to the individual card.
+   * The parseCardName method sets the value to the individual card.
+   * 
    * @param cardName
    */
   private void parseCardName(String cardName) {
     switch (cardName) {
-      case "J": // if the card is a Jack
-      case "Q": // if the card is a Queen
-      case "K": // if the card is a King
-        this.value = 10; // All J,Q,K will be set to 10
+      case "J":
+      case "Q":
+      case "K":
+        this.value = 10; // J,Q,K have value of 10.
         break;
-      case "A": // if the card is an Ace
-        this.value = 1; // Default, will be switched in game logic if need be
-        isAce = true; // change boolean value to true
+      case "A":
+        this.value = 1;
+        isAce = true;
         break;
-      default: // the default Integer value of the remaining cards
-        this.value = Integer.valueOf(cardName); // take in the value of the card
+      default:
+        this.value = Integer.valueOf(cardName);
         break;
     }
   }
-  
+
   /**
-   * The setAceHigh method will use the 
-   * value of 11 for an Ace.
+   * The setAceHigh method will use the value of 11 for an Ace.
    */
   public void setAceHigh() {
-    this.value = HIGH_ACE; // The value of an Ace is 11
+    this.value = HIGH_ACE;
   }
 
   /**
-   * The setAceLow method will use the
-   * value of 1 for an Ace.
+   * The setAceLow method will use the value of 1 for an Ace.
    */
   public void setAceLow() {
-    this.value = LOW_ACE; // The value of an Ace is 1
+    this.value = LOW_ACE;
   }
 
   /**
    * The getValue method will return the value.
+   * 
    * @return the value
    */
   public int getValue() {
-    return value; // return value
+    return value;
   }
 
   /**
    * The setValue method will set the value.
+   * 
    * @param value the value to set
    */
   public void setValue(int value) {
-    this.value = value; // sets the value
+    this.value = value;
   }
 
   /**
-   * The isAce method will return the 
-   * boolean value of whether the card is 
-   * an Ace or not an Ace.  
+   * The isAce method will return the boolean value of whether the card is an Ace or not an Ace.
+   * 
    * @return the isAce
    */
   public boolean isAce() {
-    return isAce; // return boolean value of whether it is an Ace or not.  
+    return isAce;
   }
-  
+
   /**
-   * This validCardValue method will take in a String value of the 
-   * card and check on if it is a valid card or not.  It will return
-   * true if int is valid and false if it is not valid
+   * This validCardValue method will take in a String value of the card and check on if it is a
+   * valid card or not. It will return true if int is valid and false if it is not valid
+   * 
    * @param value
    * @return boolean value of whether the pattern is a match
    */
   public static boolean validCardValue(String value) {
-    String regex = "([2-9]|10|[JQKA])[DHSC]"; // Regex pattern that checks the validity of a card in a deck.
-    Pattern pattern = Pattern.compile(regex); // Compiles the given regular expression into a pattern.
-    Matcher matcher = pattern.matcher(value); // Creates a matcher that will match the given input against this pattern.
-    return matcher.matches(); // Attempts to match the entire region against the pattern. Returns true or false. 
+    String regex = "([2-9]|10|[JQKA])[DHSC]"; // Regex pattern for valid card.
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(value);
+    return matcher.matches();
   }
-
-
 }
