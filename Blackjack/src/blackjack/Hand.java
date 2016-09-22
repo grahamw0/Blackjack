@@ -131,5 +131,4 @@ public class Hand {
   public void setBust(boolean bust) {
     this.bust = bust;
   }
-
 }
